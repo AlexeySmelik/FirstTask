@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         counter.text = TOTAL_COUNT.toString()
-        makeIncrement()
     }
 
     private fun makeIncrement(){
@@ -49,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         Log.i(TAG, "First activity has been Paused")
+        makeIncrement()
     }
 
     fun goToSquare(view: View) {
