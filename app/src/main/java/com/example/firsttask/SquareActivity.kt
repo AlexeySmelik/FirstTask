@@ -3,14 +3,13 @@ package com.example.firsttask
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_square.*
+import kotlin.math.max
 
 class SquareActivity : AppCompatActivity() {
     companion object {
         var TOTAL_COUNT: Int = 0
-        const val TAG: String = "SquareActivity"
     }
 
     lateinit var lifecycleObserver: MyObserver
@@ -21,8 +20,11 @@ class SquareActivity : AppCompatActivity() {
 
         lifecycleObserver = MyObserver()
         lifecycle.addObserver(lifecycleObserver)
+    }
 
-        TOTAL_COUNT = intent.getIntExtra("total_count", 0)
+    override fun onStart() {
+        super.onStart()
+        TOTAL_COUNT = max(intent.getIntExtra("total_count", 0), TOTAL_COUNT)
         counter.text = (TOTAL_COUNT * TOTAL_COUNT).toString()
     }
 
