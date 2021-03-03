@@ -3,12 +3,13 @@ package com.example.firsttask
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     companion object {
-        var TOTAL_COUNT: Int = -1
+        var TOTAL_COUNT: Int = 0
     }
 
     lateinit var lifecycleObserver: MyObserver
@@ -19,15 +20,13 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleObserver = MyObserver()
         lifecycle.addObserver(lifecycleObserver)
+
+        counter.text = TOTAL_COUNT.toString()
     }
 
-    private fun makeIncrement(){
-        counter.text = (++TOTAL_COUNT).toString()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        makeIncrement()
+    override fun onSaveInstanceState(outState: Bundle) {
+        TOTAL_COUNT++
+        super.onSaveInstanceState(outState)
     }
 
     fun goToSquare(view: View) {
