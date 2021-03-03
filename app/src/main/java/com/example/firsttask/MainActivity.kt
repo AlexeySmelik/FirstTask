@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         TOTAL_COUNT++
+        counter.text = TOTAL_COUNT.toString()
         super.onSaveInstanceState(outState)
     }
 
