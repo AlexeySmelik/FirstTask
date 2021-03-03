@@ -13,38 +13,17 @@ class SquareActivity : AppCompatActivity() {
         const val TAG: String = "SquareActivity"
     }
 
+    lateinit var lifecycleObserver: MyObserver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(TAG, "Second activity has been Created")
         setContentView(R.layout.activity_square)
+
+        lifecycleObserver = MyObserver()
+        lifecycle.addObserver(lifecycleObserver)
 
         TOTAL_COUNT = intent.getIntExtra("total_count", 0)
         counter.text = (TOTAL_COUNT * TOTAL_COUNT).toString()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.i(TAG, "Second activity has been Started")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i(TAG, "Second activity has been Destroyed")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.i(TAG, "Second activity has been Restarted")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i(TAG, "Second activity has been Resumed")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.i(TAG, "Second activity has been Paused")
     }
 
     fun goToMain(view: View) {

@@ -13,10 +13,14 @@ class MainActivity : AppCompatActivity() {
         const val TAG: String = "MainActivity"
     }
 
+    lateinit var lifecycleObserver: MyObserver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(TAG, "First activity has been Created")
         setContentView(R.layout.activity_main)
+
+        lifecycleObserver = MyObserver()
+        lifecycle.addObserver(lifecycleObserver)
 
         counter.text = TOTAL_COUNT.toString()
     }
@@ -25,29 +29,8 @@ class MainActivity : AppCompatActivity() {
         counter.text = (++TOTAL_COUNT).toString()
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.i(TAG, "First activity has been Started")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i(TAG, "First activity has been Destroyed")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.i(TAG, "First activity has been Restarted")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.i(TAG, "First activity has been Resumed")
-    }
-
     override fun onPause() {
         super.onPause()
-        Log.i(TAG, "First activity has been Paused")
         makeIncrement()
     }
 
@@ -56,5 +39,4 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("total_count", TOTAL_COUNT)
         startActivity(intent)
     }
-
 }
