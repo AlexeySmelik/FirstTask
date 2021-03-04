@@ -10,9 +10,11 @@ import kotlinx.android.synthetic.main.activity_square.*
 import kotlin.math.max
 
 class SquareActivity : AppCompatActivity() {
-    companion object {
-        var TOTAL_COUNT: Int = 0
+    companion object{
+        const val TOTAL_COUNT = "123"
     }
+
+    private var total_count: Int = 0
 
     lateinit var lifecycleObserver: MyObserver
 
@@ -23,23 +25,11 @@ class SquareActivity : AppCompatActivity() {
         lifecycleObserver = MyObserver()
         lifecycle.addObserver(lifecycleObserver)
 
-        TOTAL_COUNT = intent.getIntExtra("total_count", 0)
-        counter.text = (TOTAL_COUNT * TOTAL_COUNT).toString()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt("total_count", TOTAL_COUNT)
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        TOTAL_COUNT = savedInstanceState.getInt("total_count")
-        counter.text = (TOTAL_COUNT * TOTAL_COUNT).toString()
+        total_count = intent.getIntExtra(TOTAL_COUNT, 0)
+        counter.text = (total_count * total_count).toString()
     }
 
     fun goToMain(view: View) {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        finish()
     }
 }
