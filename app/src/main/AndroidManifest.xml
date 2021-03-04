@@ -14,7 +14,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                  android:configChanges="orientation|screenSize|density|smallestScreenSize|screenLayout|keyboardHidden|locale|navigation|keyboard|fontScale|mcc|mnc|uiMode|touchscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
