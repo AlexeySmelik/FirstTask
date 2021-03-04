@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     companion object {
-        var TOTAL_COUNT: Int = 0
+        var TOTAL_COUNT: Int = -1
     }
 
     lateinit var lifecycleObserver: MyObserver
@@ -20,13 +20,8 @@ class MainActivity : AppCompatActivity() {
         lifecycleObserver = MyObserver()
         lifecycle.addObserver(lifecycleObserver)
 
-        counter.text = TOTAL_COUNT.toString()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
         TOTAL_COUNT++
         counter.text = TOTAL_COUNT.toString()
-        super.onSaveInstanceState(outState)
     }
 
     fun goToSquare(view: View) {
